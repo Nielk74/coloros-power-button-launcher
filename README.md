@@ -52,6 +52,22 @@ After a phone restart, tap the persistent **Power shortcut active** notification
 
 Android does not let a normal app receive global power-button presses, and ColorOS does not provide an app picker for this shortcut. Power Launcher detects the two physical presses from a narrowly filtered ColorOS system log. Android treats access to that log as a development permission, so the APK cannot grant it to itself and the one-time ADB command is required.
 
+### Removing the ColorOS "wants to open" prompt
+
+When Power Launcher opens the selected app for the first time, ColorOS may ask whether it should be allowed. Choosing **Allow for 30 days** suppresses the prompt for that app pair for 30 days.
+
+On firmware without a permanent per-app option, the confirmations can be disabled system-wide with ADB:
+
+```text
+adb shell settings put global app_start_confirm_rus_enable 0
+```
+
+This disables ColorOS's unexpected-app-opening warning for every app, not only Power Launcher. Restore the protection at any time with:
+
+```text
+adb shell settings put global app_start_confirm_rus_enable 1
+```
+
 ## Why Wallet must stay enabled
 
 On the tested firmware, changing Android's standard camera double-tap setting does not change the OEM action. The Wallet shortcut is the part of ColorOS that keeps the first power press from immediately locking the screen and supplies the native multi-press window. Power Launcher detects the two real hardware key-downs and brings the selected app forward after the second press.
