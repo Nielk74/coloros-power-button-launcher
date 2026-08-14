@@ -1,4 +1,4 @@
-package com.antoine.chatgptpower;
+package com.nielk74.colorospowerlauncher;
 
 import android.Manifest;
 import android.app.ActivityOptions;
@@ -34,11 +34,11 @@ import java.io.InputStreamReader;
 public final class PowerButtonMonitorService extends Service {
     private static final String TAG = "PowerLauncher";
     public static final String ACTION_REAUTHORIZE_LOGS =
-            "com.antoine.chatgptpower.action.REAUTHORIZE_LOGS";
+            "com.nielk74.colorospowerlauncher.action.REAUTHORIZE_LOGS";
     public static final String ACTION_TARGET_CHANGED =
-            "com.antoine.chatgptpower.action.TARGET_CHANGED";
+            "com.nielk74.colorospowerlauncher.action.TARGET_CHANGED";
     public static final String ACTION_REFRESH =
-            "com.antoine.chatgptpower.action.REFRESH";
+            "com.nielk74.colorospowerlauncher.action.REFRESH";
     private static final String CHANNEL_ID = "power_button_shortcut";
     private static final String LAUNCH_CHANNEL_ID = "power_button_lock_launch";
     private static final int NOTIFICATION_ID = 2602;
@@ -355,7 +355,7 @@ public final class PowerButtonMonitorService extends Service {
 
     private void launchSelectedTarget() {
         Intent bridgeIntent = new Intent(this, PowerShortcutActivity.class)
-                .setAction("com.antoine.chatgptpower.action.OPEN_SELECTED_APP")
+                .setAction("com.nielk74.colorospowerlauncher.action.OPEN_SELECTED_APP")
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_CLEAR_TOP
                         | Intent.FLAG_ACTIVITY_NO_ANIMATION);

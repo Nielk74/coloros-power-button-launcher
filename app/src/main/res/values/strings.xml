@@ -26,7 +26,7 @@
     <string name="open_overlay_settings">Open overlay settings</string>
     <string name="allow_notifications">Allow notifications</string>
     <string name="open_full_screen_settings">Open full-screen settings</string>
-    <string name="adb_grant_command">adb shell pm grant com.antoine.chatgptpower android.permission.READ_LOGS</string>
+    <string name="adb_grant_command">adb shell pm grant com.nielk74.colorospowerlauncher android.permission.READ_LOGS</string>
     <string name="command_copied">ADB command copied</string>
     <string name="monitor_reauthorized">Monitor restarted. Choose Allow in Android’s device-log dialog.</string>
     <string name="wallet_note"><b>ColorOS note:</b> keep Wallet’s built-in double-press shortcut enabled. Power Launcher takes over after it; locked launches still require authentication.</string>

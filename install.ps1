@@ -1,10 +1,10 @@
 param(
     [string]$Serial,
-    [string]$ApkPath = (Join-Path $PSScriptRoot 'build\ColorOS-Power-Launcher-v1.0.0.apk')
+    [string]$ApkPath = (Join-Path $PSScriptRoot 'build\ColorOS-Power-Launcher-v1.1.0.apk')
 )
 
 $ErrorActionPreference = 'Stop'
-$packageName = 'com.antoine.chatgptpower'
+$packageName = 'com.nielk74.colorospowerlauncher'
 $adbCommand = Get-Command adb -ErrorAction SilentlyContinue
 $adb = if ($adbCommand) {
     $adbCommand.Source

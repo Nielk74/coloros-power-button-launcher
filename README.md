@@ -18,36 +18,39 @@ A small offline Android utility that lets you choose the app opened by a physica
 - Android 12 or newer (`minSdk 31`).
 - OPPO, OnePlus, or realme firmware with the same ColorOS power-policy log format.
 - The built-in power-button double-press Wallet shortcut enabled in ColorOS.
-- A one-time ADB grant for `READ_LOGS`.
+- A one-time ADB command to grant `READ_LOGS`. ADB is not required to install the APK.
 
 This project was developed and tested on an OPPO PMA120 running Android 16 / ColorOS 16.1. Other devices and firmware versions may use a different policy log tag or may block the background handoff.
 
 ## Install
 
-Download the APK from the [latest GitHub release](https://github.com/Nielk74/coloros-power-button-launcher/releases/latest), or build it locally.
+1. Download the APK from the [latest GitHub release](https://github.com/Nielk74/coloros-power-button-launcher/releases/latest).
+2. Install it normally by opening the APK on your phone. **You do not need ADB to install the app.**
+3. Enable USB or wireless debugging and connect the phone to a computer with [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools).
+4. In ColorOS **Developer options**, temporarily turn on **Disable system optimization**. This only allows the ADB permission command below to work; it does not grant the permission itself.
+5. Run:
 
-On the tested ColorOS build, the normal ADB grant is blocked while the OEM permission monitor is active:
-
-1. In **Developer options**, temporarily enable the setting that disables ColorOS permission monitoring. On the tested phone it is labeled **Disable system optimization**.
-2. Install the APK and grant log access:
-
-   ```powershell
-   adb install -r .\ColorOS-Power-Launcher-v1.0.0.apk
-   adb shell pm grant com.antoine.chatgptpower android.permission.READ_LOGS
+   ```text
+   adb shell pm grant com.nielk74.colorospowerlauncher android.permission.READ_LOGS
    ```
 
-3. Immediately restore **Disable system optimization** to its previous/off state. It does not need to remain enabled.
-4. Open **ColorOS Power Launcher**. Complete any setup card for display-over-apps, notifications, or locked-screen full-screen notifications.
-5. Choose the target app and approve Android's one-time device-log dialog.
-6. Keep ColorOS's built-in Wallet double-press shortcut enabled.
+6. Turn **Disable system optimization** back off immediately. It does not need to remain enabled.
+7. Open **ColorOS Power Launcher**, finish the setup cards, select an app, and approve Android's device-log dialog.
+8. Keep ColorOS's built-in Wallet double-press shortcut enabled.
 
-The included PowerShell helper performs the install, ADB grant, and app launch:
+If you installed v1.0.0, uninstall it first. The cleaner package name in v1.1.0 makes Android treat it as a separate app, and running both versions would start two power-button monitors.
+
+Installing with ADB is optional. If preferred, the included PowerShell helper installs the APK, grants the permission, and opens the app:
 
 ```powershell
 .\install.ps1 -Serial '<device-ip>:<port>'
 ```
 
 After a phone restart, tap the persistent **Power shortcut active** notification and choose **Allow** in Android's device-log dialog again. That one-time approval lasts while the foreground monitor process remains alive.
+
+### Why is `READ_LOGS` needed?
+
+Android does not let a normal app receive global power-button presses, and ColorOS does not provide an app picker for this shortcut. Power Launcher detects the two physical presses from a narrowly filtered ColorOS system log. Android treats access to that log as a development permission, so the APK cannot grant it to itself and the one-time ADB command is required.
 
 ## Why Wallet must stay enabled
 
@@ -57,15 +60,13 @@ Wallet can flash briefly before the selected app on some firmware. The helper mi
 
 ## Privacy and security
 
-`READ_LOGS` is a powerful Android development permission, so the monitor starts `logcat` with an explicit allow-list for only this ColorOS tag:
+The monitor starts `logcat` with an explicit allow-list for only this ColorOS tag:
 
 ```text
 KEYLOG_PhoneWindowManagerExtImpl
 ```
 
 It accepts only non-synthetic `KEYCODE_POWER` down events and ignores `deviceId=-1`. The display-over-apps permission is used for a transparent, non-touchable 1×1-pixel window that helps Android authorize the activity handoff. No log content or app choice leaves the device; the manifest has no internet permission.
-
-The internal package ID remains `com.antoine.chatgptpower` so people using the original ChatGPT prototype can install this as an update without losing existing grants.
 
 ## Build
 
@@ -81,7 +82,7 @@ Or use Gradle directly:
 .\gradlew.bat lintDebug assembleDebug
 ```
 
-The convenience script writes `build\ColorOS-Power-Launcher-v1.0.0.apk`. Public release APKs are signed separately; no signing credentials are stored in this repository.
+The convenience script writes `build\ColorOS-Power-Launcher-v1.1.0.apk`. Public release APKs are signed separately; no signing credentials are stored in this repository.
 
 ## Known limitations
 

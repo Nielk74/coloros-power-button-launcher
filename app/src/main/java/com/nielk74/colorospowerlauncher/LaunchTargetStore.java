@@ -1,4 +1,4 @@
-package com.antoine.chatgptpower;
+package com.nielk74.colorospowerlauncher;
 
 import android.content.Context;
 import android.content.Intent;

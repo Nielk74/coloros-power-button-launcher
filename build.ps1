@@ -32,7 +32,7 @@ if ($LASTEXITCODE -ne 0) {
 
 $sourceApk = Join-Path $projectRoot 'app\build\outputs\apk\debug\app-debug.apk'
 $artifactDir = Join-Path $projectRoot 'build'
-$artifactApk = Join-Path $artifactDir 'ColorOS-Power-Launcher-v1.0.0.apk'
+$artifactApk = Join-Path $artifactDir 'ColorOS-Power-Launcher-v1.1.0.apk'
 New-Item -ItemType Directory -Force -Path $artifactDir | Out-Null
 Copy-Item -LiteralPath $sourceApk -Destination $artifactApk -Force
 Write-Output $artifactApk
