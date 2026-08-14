@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#111111</color>
+    <color name="surface">#1B1B1B</color>
+    <color name="surface_variant">#292927</color>
+    <color name="on_background">#F5F5F3</color>
+    <color name="on_surface">#F5F5F3</color>
+    <color name="on_surface_variant">#B8B8B3</color>
+    <color name="outline">#41413D</color>
+    <color name="primary">#F5F5F3</color>
+    <color name="on_primary">#171717</color>
+    <color name="accent">#F4B65E</color>
+    <color name="selected_surface">#302417</color>
+    <color name="selected_outline">#F4B65E</color>
+    <color name="badge_surface">#4A3217</color>
+    <color name="badge_text">#FFD79A</color>
+    <color name="success">#7AD99B</color>
+    <color name="warning_surface">#403510</color>
+    <color name="warning_text">#F8E39B</color>
+    <color name="warning_action">#F2D36E</color>
+    <color name="on_warning_action">#302800</color>
+    <color name="icon_background">#171717</color>
+</resources>
