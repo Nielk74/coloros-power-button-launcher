@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ColorOSPowerLauncher"
 include(":app")
+include(":walletshim")

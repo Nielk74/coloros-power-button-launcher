@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wallet Shortcut</string>
+    <string name="authentication_title">Unlock Google Wallet</string>
+    <string name="authentication_description">Authenticate to open tap-to-pay</string>
+    <string name="authentication_unavailable">Secure authentication is unavailable</string>
+    <string name="wallet_not_installed">Google Wallet is not installed</string>
+    <string name="wallet_launch_failed">Google Wallet could not be opened</string>
+    <string name="accessibility_service_label">Google Wallet power-button redirect</string>
+    <string name="accessibility_service_description">Redirects only the OPPO Wallet quick-launch screen to Google Wallet. It cannot read screen contents.</string>
+</resources>
